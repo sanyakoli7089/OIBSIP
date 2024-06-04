@@ -6,7 +6,7 @@ class ATMinterface {
     String Holder_name;
     int Pin;
     int Account_number;
-    float Balance = 50000f;
+    float Balance = 10000f;
     int Transactions = 0;
     String Transaction_history = "";
 
@@ -32,8 +32,8 @@ class ATMinterface {
             if (holder_name.equals(Holder_name)) {
                 while (!isLogin) {
                     System.out.print("\nEnter Your Pin - ");
-                    String pin = sc.nextLine();
-                    if (pin.equals(Pin)) {
+                    int pin = sc.nextInt();
+                    if (pin == Pin) {
                         System.out.print("\nLogin Successful!! ");
                         isLogin = true;
                     } else {
@@ -51,7 +51,7 @@ class ATMinterface {
         System.out.print("\nEnter amount to be withdraw - ");
         Scanner sc = new Scanner(System.in);
         float amount = sc.nextFloat();
-        try {
+    
             if (Balance >= amount) {
                 Transactions++;
                 Balance -= amount;
@@ -61,29 +61,27 @@ class ATMinterface {
             } else {
                 System.out.print("\nInsufficient Balance");
             }
-        } catch (Exception e) {
+        
 
         }
-    }
+    
 
     public void deposit() {
         System.out.print("\nEnter amount to deposit - ");
         Scanner sc = new Scanner(System.in);
         float Amount = sc.nextFloat();
 
-        try {
-            if (Amount <= 50000f) {
+        
+            if (Amount <= 10000f) {
                 Transactions++;
                 Balance += Amount;
                 System.out.print("\nSuccessfully Deposited");
                 String str = Amount + " Rs Deposited\n";
                 Transaction_history = Transaction_history.concat(str);
             } else {
-                System.out.print("\nSorry....Limit is 50000.00");
+                System.out.print("\nSorry....Limit is 10000.00");
             }
-        } catch (Exception e) {
-
-        }
+        
     }
 
     public void transfer() {
@@ -93,7 +91,6 @@ class ATMinterface {
         System.out.print("\nEnter Amount to Transfer - ");
         float Amount = sc.nextFloat();
 
-        try {
             if (Balance >= Amount) {
                 if (Amount <= 10000f) {
                     Transactions++;
@@ -102,16 +99,15 @@ class ATMinterface {
                     String str = Amount + " Rs Transfered to " + Recipient + "\n";
                     Transaction_history = Transaction_history.concat(str);
                 } else {
-                    System.out.print("\nSorry....Limit is 50000");
+                    System.out.print("\nSorry....Limit is 10000");
                 }
             } else {
                 System.out.print("\nInsufficient Balance");
             }
 
-        } catch (Exception e) {
         }
-    }
 
+        
     public void transaction_History() {
         if (Transactions == 0) {
             System.out.print("\nEmpty");
@@ -183,3 +179,5 @@ class ATMinterface {
         } while (choice != 7);
     }
 }
+
+
